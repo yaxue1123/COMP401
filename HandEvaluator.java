@@ -10,7 +10,7 @@ public class HandEvaluator {
 		while (scanner.hasNext()) {
 			int numOfOpponents = scanner.nextInt();
 			
-			// End the while loop if the number of opponents is 0
+			// End the while loop if the num of opponents is 0
 			if (numOfOpponents == 0)
 				break;
 			
@@ -28,17 +28,13 @@ public class HandEvaluator {
 					default: suit = null;
 				}	
 			}
-			for (int z = 0; z < 5; z++) {
-			System.out.print(" " + cards[z].getRank() 
-					+ " " + cards[z].getSuit());}
-			
 			// Create a specific hand based on user input.
 			PokerHand myHand = new PokerHandImpl(cards);
 			
 			// Experiment 10000 times to determine how often the specific hand wins.
 			int timeOfWins = 0;
 			
-//			for(int j = 0; j < 10000; j++) {
+			for(int j = 0; j < 10000; j++) {
 				// Created a shuffled deck of 52 cards.
 				Deck myDeck = new DeckImpl();
 				
@@ -59,24 +55,16 @@ public class HandEvaluator {
 				// Otherwise, consider the experiment a loss.
 				// Use a variable flag to keep track of win and loss, is all win, flag is 1, otherwise -1.
 				int flag = 1;
-				for (int i = 0; i < numOfOpponents; i++) {
-					
-					for (int z = 0; z < 5; z++) {
-					System.out.print(" " + oppHand[i].getCards()[z].getRank() 
-							+ " " + oppHand[i].getCards()[z].getSuit());
-					}
-					
-					System.out.println("\n");
+				for(int i = 0; i < numOfOpponents; i++) {
 					if(myHand.compareTo(oppHand[i]) < 1)
-						flag = -1;	
-						System.out.println("lose\n");
+						flag = -1;		
 					}
 				
 				if(flag == 1)
 					timeOfWins++;
-//			}
+			}
 			
-//			System.out.print("\n" + Math.round((float)timeOfWins / 100));
+			System.out.print("\n" + Math.round((float)timeOfWins / 100));
 	}
 		
 	scanner.close();
